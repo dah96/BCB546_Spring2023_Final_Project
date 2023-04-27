@@ -1,0 +1,45 @@
+---
+title: "Exploratory Data Analysis"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r}
+# Load packages and read Files
+library(tidyverse)
+library(data.table)
+
+df.ZIKV <- fread("GSE207347_A1B1_vs_A2B2_ZIKV_ribodiff_name.txt.gz")
+df.DENV <- fread("GSE207347_A1B1_vs_A3B3_DENV_ribodiff_name.txt.gz")
+df.ZIKV_DE <- fread("GSE207347_ZIKV_DESeq2_result_name.txt.gz")
+df.DENV_DE <- fread("GSE207347_DENV_DESeq2_result_name.txt.gz")
+```
+
+```{r}
+# Figure 1 B
+fig1b <- ggplot(subset(df.ZIKV_DE, !is.na(padj)),
+                aes(log2FoldChange, -log10(padj)))
+
+fig1b +
+  geom_point(aes(colour = -log10(padj) > -log10(0.05)), show.legend = FALSE) +
+  labs(title = "ZIKV") + xlab("RNA log2Fold change") + ylab("p adj(-log10)") +
+  geom_vline(xintercept = 0) + geom_hline(yintercept = -log10(0.05)) +
+  scale_color_manual(values = c('black', 'red'))
+```
+
+```{r}
+# Figure 1 C
+fig1c <- ggplot(subset(df.DENV_DE, !is.na(padj)),
+                aes(log2FoldChange, -log10(padj)))
+
+fig1c +
+  geom_point(aes(colour = -log10(padj) > -log10(0.05)), show.legend = FALSE) +
+  labs(title = "ZIKV") + xlab("RNA log2Fold change") + ylab("p adj(-log10)") +
+  geom_vline(xintercept = 0) + geom_hline(yintercept = -log10(0.05)) +
+  scale_color_manual(values = c('black', 'red'))
+```
+
+
