@@ -1,5 +1,7 @@
 library(tidyverse)
 library(data.table)
+library(scales)
+library(metR)
 
 # Read Files
 df.ZIKV <- fread("GSE207347_A1B1_vs_A2B2_ZIKV_ribodiff_name.txt.gz")
@@ -87,6 +89,9 @@ fig2a +
         plot.title = element_text(hjust = 0.5),
         axis.line = element_line(colour = "black"))
 
+# Count of q < 0.001
+sum(df.ZIKV_DE.up$padj < 0.001)
+
 # Figure 2 B
 
 DENV.up <- df.DENV_DE.sub$log2FoldChange > 0 & df.DENV_DE.sub$padj < 0.05
@@ -106,3 +111,73 @@ fig2b +
         panel.background = element_blank(),
         plot.title = element_text(hjust = 0.5),
         axis.line = element_line(colour = "black"))
+
+# Count of q < 0.001
+sum(df.DENV_DE.up$padj < 0.001)
+
+# Figure 3 A
+
+colnames(df.ZIKV)[7] <- "log2FC_TE_DrugTreated_vs_Control"
+
+df.ZIKV.sub <- subset(df.ZIKV, !is.na(padj))
+
+# idx.q <- c(quantile(df.ZIKV.sub$log2FC_TE_DrugTreated_vs_Control, 0.3),
+#           quantile(df.ZIKV.sub$log2FC_TE_DrugTreated_vs_Control, 0.7))
+
+# idx <- df.ZIKV.sub$log2FC_TE_DrugTreated_vs_Control > idx.q[2] |
+#  df.ZIKV.sub$log2FC_TE_DrugTreated_vs_Control < idx.q[1]
+
+# df.ZIKV.sub <- df.ZIKV.sub[idx,]
+
+fig3a <- ggplot(df.ZIKV.sub,
+                aes(x = log2FC_TE_DrugTreated_vs_Control, y = padj))
+
+fig3a +
+  geom_point() +
+  scale_y_continuous(trans = reverselog_trans(base = 10),
+                     breaks = c(1, 0.1, 0.01, 0.001)) +
+  scale_x_continuous(limits = c(-8, 8),
+                     breaks = seq(-8, 8, 2)) +
+  xlab("log2FC_TE(ZIKV infected vs control") + 
+  ylab("q adj(-log10)") +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        plot.title = element_text(hjust = 0.5),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black",
+                                    fill = NA, linewidth = 1))
+
+
+# Figure 3 B
+
+colnames(df.DENV)[7] <- "log2FC_TE_DrugTreated_vs_Control"
+
+df.DENV.sub <- subset(df.DENV, !is.na(padj))
+
+fig3b <- ggplot(df.DENV.sub,
+                aes(x = log2FC_TE_DrugTreated_vs_Control, y = padj))
+
+fig3b +
+  geom_point() +
+  scale_y_continuous(trans = reverselog_trans(base = 10),
+                     labels = trans_format("log10", math_format(10^.x)),
+                     breaks = trans_breaks("log10", function(x) 10^x)) +
+  scale_x_continuous(limits = c(-8, 8),
+                     breaks = seq(-8, 8, 2)) +
+  xlab("log2FC_TE(DENV infected vs control") + 
+  ylab("q adj(-log10)") +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        plot.title = element_text(hjust = 0.5),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black",
+                                    fill = NA, linewidth = 1))
+
+
+
+
+
+
+
