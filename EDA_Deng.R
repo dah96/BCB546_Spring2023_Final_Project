@@ -66,3 +66,43 @@ df.DENV_DE.sub <- subset(df.DENV_DE, !is.na(padj))
 (df.DENV_DE.sub$log2FoldChange > 0 & df.DENV_DE.sub$padj < 0.05) %>% sum()
 # Count of Down regulated with q < 0.05
 (df.DENV_DE.sub$log2FoldChange < 0 & df.DENV_DE.sub$padj < 0.05) %>% sum()
+
+# Figure 2 A
+
+ZIKV.up <- df.ZIKV_DE.sub$log2FoldChange > 0 & df.ZIKV_DE.sub$padj < 0.05
+df.ZIKV_DE.up <- df.ZIKV_DE.sub[ZIKV.up,]
+
+fig2a <- ggplot(subset(df.ZIKV_DE.up, !is.na(padj)),
+                aes(x = -log10(padj), y = log2FoldChange))
+
+fig2a +
+  geom_point(aes(colour = -log10(padj) > -log10(0.001)), show.legend = FALSE) +
+  xlim(0, 20) + ylim(0, 5) + labs(title = "ZIKV Upregulated RNA") +
+  xlab("p adj(-log10)") + 
+  ylab("Up regulated RNA \n log2Fold change \n (Infected vs uninfected)") +
+  scale_color_manual(values = c('black', 'red')) +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        plot.title = element_text(hjust = 0.5),
+        axis.line = element_line(colour = "black"))
+
+# Figure 2 B
+
+DENV.up <- df.DENV_DE.sub$log2FoldChange > 0 & df.DENV_DE.sub$padj < 0.05
+df.DENV_DE.up <- df.DENV_DE.sub[DENV.up,]
+
+fig2b <- ggplot(subset(df.DENV_DE.up, !is.na(padj)),
+                aes(x = -log10(padj), y = log2FoldChange))
+
+fig2b +
+  geom_point(aes(colour = -log10(padj) > -log10(0.001)), show.legend = FALSE) +
+  xlim(0, 20) + ylim(0, 5) + labs(title = "ZIKV Upregulated RNA") +
+  xlab("p adj(-log10)") + 
+  ylab("Up regulated RNA \n log2Fold change \n (Infected vs uninfected)") +
+  scale_color_manual(values = c('black', 'red')) +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        plot.title = element_text(hjust = 0.5),
+        axis.line = element_line(colour = "black"))
