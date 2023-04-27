@@ -17,6 +17,12 @@ fig1b +
   geom_vline(xintercept = 0) + geom_hline(yintercept = -log10(0.05)) +
   scale_color_manual(values = c('black', 'red'))
 
+df.ZIKV_DE.sub <- subset(df.ZIKV_DE, !is.na(padj))
+# Count of Up regulated with q < 0.05
+(df.ZIKV_DE.sub$log2FoldChange > 0 & df.ZIKV_DE.sub$padj < 0.05) %>% sum()
+# Count of Down regulated with q < 0.05
+(df.ZIKV_DE.sub$log2FoldChange < 0 & df.ZIKV_DE.sub$padj < 0.05) %>% sum()
+
 # Figure 1 C
 fig1c <- ggplot(subset(df.DENV_DE, !is.na(padj)),
                 aes(log2FoldChange, -log10(padj)))
@@ -27,4 +33,8 @@ fig1c +
   geom_vline(xintercept = 0) + geom_hline(yintercept = -log10(0.05)) +
   scale_color_manual(values = c('black', 'red'))
 
-
+df.DENV_DE.sub <- subset(df.DENV_DE, !is.na(padj))
+# Count of Up regulated with q < 0.05
+(df.DENV_DE.sub$log2FoldChange > 0 & df.DENV_DE.sub$padj < 0.05) %>% sum()
+# Count of Down regulated with q < 0.05
+(df.DENV_DE.sub$log2FoldChange < 0 & df.DENV_DE.sub$padj < 0.05) %>% sum()

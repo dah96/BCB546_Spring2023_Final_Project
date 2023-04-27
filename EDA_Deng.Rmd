@@ -31,6 +31,14 @@ fig1b +
 ```
 
 ```{r}
+df.ZIKV_DE.sub <- subset(df.ZIKV_DE, !is.na(padj))
+# Count of Up regulated with q < 0.05
+(df.ZIKV_DE.sub$log2FoldChange > 0 & df.ZIKV_DE.sub$padj < 0.05) %>% sum()
+# Count of Down regulated with q < 0.05
+(df.ZIKV_DE.sub$log2FoldChange < 0 & df.ZIKV_DE.sub$padj < 0.05) %>% sum()
+```
+
+```{r}
 # Figure 1 C
 fig1c <- ggplot(subset(df.DENV_DE, !is.na(padj)),
                 aes(log2FoldChange, -log10(padj)))
@@ -42,4 +50,10 @@ fig1c +
   scale_color_manual(values = c('black', 'red'))
 ```
 
-
+```{r}
+df.DENV_DE.sub <- subset(df.DENV_DE, !is.na(padj))
+# Count of Up regulated with q < 0.05
+(df.DENV_DE.sub$log2FoldChange > 0 & df.DENV_DE.sub$padj < 0.05) %>% sum()
+# Count of Down regulated with q < 0.05
+(df.DENV_DE.sub$log2FoldChange < 0 & df.DENV_DE.sub$padj < 0.05) %>% sum()
+```
