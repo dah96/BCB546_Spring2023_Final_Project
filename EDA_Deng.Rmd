@@ -25,14 +25,23 @@ fig1b <- ggplot(subset(df.ZIKV_DE, !is.na(padj)),
 
 fig1b +
   geom_point(aes(colour = -log10(padj) > -log10(0.05)), show.legend = FALSE) +
-  labs(title = "ZIKV") + xlab("RNA log2Fold change") + ylab("p adj(-log10)") +
+  labs(title = "ZIKV") + ylab("p adj(-log10)") +
+  xlab("RNA log2Fold change \n (Infected vs uninfected)")  +
   geom_vline(xintercept = 0) + geom_hline(yintercept = -log10(0.05)) +
-  scale_color_manual(values = c('black', 'red')) + 
+  scale_color_manual(values = c('black', 'red')) +
+  annotate("text", x = -1.5, y = 20,
+           label = "Down regulated \n q<0.05 \n (n=335)",
+           col = "black") +
+  annotate("text", x = 1.5, y = 20,
+           label = "Up regulated \n q<0.05 \n (n=445)",
+           col = "black") +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.background = element_blank(),
         plot.title = element_text(hjust = 0.5),
-        axis.line = element_line(colour = "black"))
+        axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black",
+                                    fill = NA, linewidth = 1.5))
 ```
 
 ```{r}
@@ -50,14 +59,23 @@ fig1c <- ggplot(subset(df.DENV_DE, !is.na(padj)),
 
 fig1c +
   geom_point(aes(colour = -log10(padj) > -log10(0.05)), show.legend = FALSE) +
-  labs(title = "ZIKV") + xlab("RNA log2Fold change") + ylab("p adj(-log10)") +
+  labs(title = "DENV") + ylab("p adj(-log10)") +
+  xlab("RNA log2Fold change \n (Infected vs uninfected)") +
   geom_vline(xintercept = 0) + geom_hline(yintercept = -log10(0.05)) +
   scale_color_manual(values = c('black', 'red')) +
+  annotate("text", x = -1.5, y = 14,
+           label = "Down regulated \n q<0.05 \n (n=37)",
+           col = "black") +
+  annotate("text", x = 2, y = 14,
+           label = "Up regulated \n q<0.05 \n (n=156)",
+           col = "black") +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.background = element_blank(),
         plot.title = element_text(hjust = 0.5),
-        axis.line = element_line(colour = "black"))
+        axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black",
+                                    fill = NA, linewidth = 1.5))
 ```
 
 ```{r}
