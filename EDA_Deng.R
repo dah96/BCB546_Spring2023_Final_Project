@@ -120,6 +120,7 @@ sum(df.DENV_DE.up$padj < 0.001)
 colnames(df.ZIKV)[7] <- "log2FC_TE_DrugTreated_vs_Control"
 
 df.ZIKV.sub <- subset(df.ZIKV, !is.na(padj))
+df.ZIKV.sub <- df.ZIKV.sub[df.ZIKV.sub$padj < 0.5,]
 
 # idx.q <- c(quantile(df.ZIKV.sub$log2FC_TE_DrugTreated_vs_Control, 0.3),
 #           quantile(df.ZIKV.sub$log2FC_TE_DrugTreated_vs_Control, 0.7))
@@ -154,6 +155,7 @@ fig3a +
 colnames(df.DENV)[7] <- "log2FC_TE_DrugTreated_vs_Control"
 
 df.DENV.sub <- subset(df.DENV, !is.na(padj))
+df.DENV.sub <- df.DENV.sub[df.DENV.sub$padj < 0.5,]
 
 fig3b <- ggplot(df.DENV.sub,
                 aes(x = log2FC_TE_DrugTreated_vs_Control, y = padj))
