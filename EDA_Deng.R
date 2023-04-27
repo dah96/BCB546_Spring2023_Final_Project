@@ -15,7 +15,12 @@ fig1b +
   geom_point(aes(colour = -log10(padj) > -log10(0.05)), show.legend = FALSE) +
   labs(title = "ZIKV") + xlab("RNA log2Fold change") + ylab("p adj(-log10)") +
   geom_vline(xintercept = 0) + geom_hline(yintercept = -log10(0.05)) +
-  scale_color_manual(values = c('black', 'red'))
+  scale_color_manual(values = c('black', 'red')) + 
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        plot.title = element_text(hjust = 0.5),
+        axis.line = element_line(colour = "black"))
 
 df.ZIKV_DE.sub <- subset(df.ZIKV_DE, !is.na(padj))
 # Count of Up regulated with q < 0.05
@@ -31,7 +36,12 @@ fig1c +
   geom_point(aes(colour = -log10(padj) > -log10(0.05)), show.legend = FALSE) +
   labs(title = "ZIKV") + xlab("RNA log2Fold change") + ylab("p adj(-log10)") +
   geom_vline(xintercept = 0) + geom_hline(yintercept = -log10(0.05)) +
-  scale_color_manual(values = c('black', 'red'))
+  scale_color_manual(values = c('black', 'red')) +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        plot.title = element_text(hjust = 0.5),
+        axis.line = element_line(colour = "black"))
 
 df.DENV_DE.sub <- subset(df.DENV_DE, !is.na(padj))
 # Count of Up regulated with q < 0.05
