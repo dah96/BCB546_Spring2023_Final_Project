@@ -1,11 +1,39 @@
 ---
-title: "Final Project"
+title: "Transcriptional and Translational Dynamics of Zika and Dengue Virus Infection"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 ```
+
+# Background and Introduction:
+
+Translation, the key event in all living things in which the genetic code is decoded as proteins are synthesized, has been underappreciated as a regulatory stage of gene expression. Historically, gene expression monitoring has focused on the levels of mRNA (the transcriptome) determined by methods that continue to be more informative, such as the widely used high throughput RNA-sequencing (RNA-seq) that alone is not sufficient to determine protein expression level. Proteomics study can address this questions regarding protein expression, but measuring protein levels combined with RNA-seq provides only an indirect measure of translation efficiency and does not account for differences in protein stability. To study and understand translation regulation, ribosome profiling is one of the powerful tools. Ribosome Profiling or RiboSeq is a RNAseq-based powerful deep sequencing technique that sequences the RNA occupied by translating ribosome instead of sequencing the total mRNA.  This can provide a panaroma of whole translation process.
+
+In this study, the authors have used ribosome profiling to understand translation regulation in virus infection. Zika virus (ZIKV) and dengue virus (DENV) belongs to the family Flaviviridae and contain single-stranded plus-sense RNA genomes. Both viruses are transmitted to humans by tropical Aedes mosquitos that are increasingly reaching first world regions. ZIKV and DENV share over 90% of their genome sequences. Also, previous studies on the transcriptional and immunological effects of DENV and ZIKV have revealed that both viruses induce a classical Type I interferon anti-viral response. In this study, they have done high-resolution ribosome profiling and RNA deep sequencing (RNA-seq) to define the gene expression and mRNA translation dynamics of the viral and host genomes during ZIKV and DENV infection of human neuronal progenitor cells (hNPCs). Their data highlights the cellular stress response and the activation of RNA translation and polyamine metabolism during DENV and ZIKV infection.
+
+`In this project, we tried to reproduce and understand the differentially expressed gene analysis from this study, both in transcriptional and translational level.`
+
+### Overall design
+They performed ribosome footprinting and RNA sequencing on human neuronal progenitor cells (hNPCs) cells either uninfected or infected with ZIKV or DENV in two biological replicates that were collected 72 hours post infection. 
+
+### Source of the raw data
+
+[**Data Link**](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE207347)
+
+- In the source, unifected samples are indicated as A1 and B1, ZIKV infected samples are indicated as A2, B2 and DENV infected samples are indicated as A3 and B3. Then the raw sequences were processed.
+
+# Technical Issues:
+
+We were able to replicate most figures that did not require a reference genome using ggplot 2 3.4.2 in R version 4.3.0.
+
+## Difficulties
+-	Rerunning analysis leads to differing adjusted p values.
+	Different statistical software was used by the Singh et al. meaning a different algorithm is used to correct false discovery rate.
+-	Some rounding was used by the paper resulting in slight differences in figures even when their p adjusted was used
+-	A large portion of the figures in this paper are generated through Ensembl which compares the RNA sequences to the human genome giving them labels
+-	No documentation makes this difficult
 
 ```{r}
 # Load packages and read Files
