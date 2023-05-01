@@ -1,6 +1,5 @@
 ---
 title: "Test"
-author: "Weixia Deng"
 output: pdf_document
 ---
 
@@ -23,7 +22,6 @@ df.ZIKV_DE <- fread("GSE207347_ZIKV_DESeq2_result_name.txt.gz")
 df.ZIKV_DE.sub <- subset(df.ZIKV_DE, !is.na(padj))
 idx <- df.ZIKV_DE.sub$log2FoldChange < 0 & df.ZIKV_DE.sub$padj < 0.05
 df.sub <- df.ZIKV_DE.sub[idx,]
-
 
 # ZIKV_DE Data
 
