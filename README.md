@@ -10,6 +10,7 @@ Transcriptional and Translational Dynamics of Zika and Dengue Virus Infection
 
 [**Paper Link**](https://doi.org/10.3390/v14071418)
 
+[**Source of the raw data**](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE207347)
 
 ## `data` directory
 

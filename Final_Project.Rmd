@@ -1,5 +1,5 @@
 ---
-title: "Transcriptional and Translational Dynamics of Zika and Dengue Virus Infection"
+title: "**Transcriptional and Translational Dynamics of Zika and Dengue Virus Infection**"
 output: pdf_document
 ---
 
@@ -13,7 +13,7 @@ Translation, the key event in all living things in which the genetic code is dec
 
 In this study, the authors have used ribosome profiling to understand translation regulation in virus infection. Zika virus (ZIKV) and dengue virus (DENV) belongs to the family Flaviviridae and contain single-stranded plus-sense RNA genomes. Both viruses are transmitted to humans by tropical Aedes mosquitos that are increasingly reaching first world regions. ZIKV and DENV share over 90% of their genome sequences. Also, previous studies on the transcriptional and immunological effects of DENV and ZIKV have revealed that both viruses induce a classical Type I interferon anti-viral response. In this study, they have done high-resolution ribosome profiling and RNA deep sequencing (RNA-seq) to define the gene expression and mRNA translation dynamics of the viral and host genomes during ZIKV and DENV infection of human neuronal progenitor cells (hNPCs). Their data highlights the cellular stress response and the activation of RNA translation and polyamine metabolism during DENV and ZIKV infection.
 
-`In this project, we tried to reproduce and understand the differentially expressed gene analysis from this study, both in transcriptional and translational level.`
+In this project, we tried to reproduce and understand the differentially expressed gene analysis from this study, both in transcriptional and translational level.
 
 ### Overall design
 They performed ribosome footprinting and RNA sequencing on human neuronal progenitor cells (hNPCs) cells either uninfected or infected with ZIKV or DENV in two biological replicates that were collected 72 hours post infection. 
@@ -24,9 +24,9 @@ They performed ribosome footprinting and RNA sequencing on human neuronal progen
 
 - In the source, unifected samples are indicated as A1 and B1, ZIKV infected samples are indicated as A2, B2 and DENV infected samples are indicated as A3 and B3. Then the raw sequences were processed.
 
-# Technical Issues:
+# Technical Details:
 
-We were able to replicate most figures that did not require a reference genome using ggplot 2 3.4.2 in R version 4.3.0.
+We were able to replicate most figures that did not require a reference genome using `ggplot2` 3.4.2 in `R` version 4.3.0.
 
 ## Difficulties
 -	Rerunning analysis leads to differing adjusted p values.
