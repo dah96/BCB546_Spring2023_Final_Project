@@ -285,11 +285,13 @@ ggplot(complete.trna, aes(x=na, y=log2FoldChange, label=log2FoldChange)) +
 #Also can't seem to adjust color of the bars.
 ```
 
+Figure 2E: Here, we analyzed RNA fold change of ZIKV and DENV induced aminoacyl tRNA synthetases (ARS) genes. Interestingly, here, our plot showed difference compared to the actual study. For example, TARS genes showed non-significant decrease in RNA abundance in their study, while ours still shows an increase which is also indicated by their data tables.
+
+The x-axis is all the aminoacyl tRNA synthetases and the y-axis is the `log2FoldChange` in RNA from `GSE207347_ZIKV_DESeq2_result_name.txt.gz` and `GSE207347_DENV_DESeq2_result_name.txt.gz` files.
+
 ```{r}
 rm(list = ls())
 ```
-
-Figure 2E: Here, we analyzed RNA fold change of ZIKV and DENV induced aminoacyl tRNA synthetases (ARS) genes. Interestingly, here, our plot showed difference compared to the actual study. For example, TARS genes showed non-significant decrease in RNA abundance in their study, while ours still shows an increase which is also indicated by their data tables.
 
 # Test (Figure 1 F)
 
