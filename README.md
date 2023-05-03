@@ -6,7 +6,7 @@ Md Shazid Hasan, Dylan Harris, Jahanara Sonia, Weixia Deng
 
 ## Paper Infomation
 
-Transcriptional and Translational Dynamics of Zika and Dengue Virus Infection
+Singh, K., Martinez, M. G., Lin, J., Gregory, J., Nguyen, T. U., Abdelaal, R., Kang, K., Brennand, K., Grünweller, A., Ouyang, Z., Phatnani, H., Kielian, M., & Wendel, H. G. (2022). Transcriptional and Translational Dynamics of Zika and Dengue Virus Infection. *Viruses*, *14*(7), [1418].
 
 [**Paper Link**](https://doi.org/10.3390/v14071418)
 
@@ -14,7 +14,7 @@ Transcriptional and Translational Dynamics of Zika and Dengue Virus Infection
 
 ## `data` directory
 
-A data directory that contains links to data necessary to run your code.
+A data directory that contains links to data necessary to run the code.
 
 ## `code` directory
 
