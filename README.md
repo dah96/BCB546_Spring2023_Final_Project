@@ -12,6 +12,8 @@ Singh, K., Martinez, M. G., Lin, J., Gregory, J., Nguyen, T. U., Abdelaal, R., K
 
 [**Source of the raw data**](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE207347)
 
+In-class presentation slides [**Slide Link**](https://docs.google.com/presentation/d/1Bam0eOYT2dJedJHBMVyNO2d5gJ3xlQ2sEBhzREEpu48/edit?usp=sharing)
+
 ## `main` directory
 
 The introduction of original paper, the technical details of the replication of analyses and the summary of the original results are written in **R Markdown** `Singh_et_al_2022.Rmd` and compiled to `pdf`.
