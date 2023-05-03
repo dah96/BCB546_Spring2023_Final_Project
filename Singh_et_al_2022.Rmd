@@ -119,7 +119,9 @@ df.DENV_DE.sub <- subset(df.DENV_DE, !is.na(padj))
 ```
 
 
-Figure 1B & C: To reproduce Figure 1B and C we used log2fold change in RNA expression (uninfected vs infected) in the X axis and p(adjusted value) in Y axis. We found upregulation of 445 mRNAs and downregulation of 335 mRNAs in case of ZIKV infection. Also, we found upregulation of 156 mRNAs and downregulation of 37mRNAs in DENV infection, which is the same as the study. 
+Figure 1B & C: To reproduce Figure 1B and C we used log2fold change in RNA expression (uninfected vs infected) in the X axis and p(adjusted value) in Y axis. We found upregulation of 445 mRNAs and downregulation of 335 mRNAs in case of ZIKV infection. Also, we found upregulation of 156 mRNAs and downregulation of 37mRNAs in DENV infection, which is the same as the study.
+
+The x-axis is `log2FoldChange` and y-axis is `padj` from `GSE207347_ZIKV_DESeq2_result_name.txt.gz` and `GSE207347_DENV_DESeq2_result_name.txt.gz` files.
 
 # Figure 2 A and B
 
@@ -172,6 +174,8 @@ fig2b +
 ```
 
 Figure 2A & 2B: Here, we tried to analyze the upregulated RNA in ZIKV(fig. 2A) and DENV (fig. 2B) infected samples compared to the uninfected samples, using DSeq2 processed data. Although, in their plots they highlighted the genes that are upregulated both in ZIKV and DENV infection, our plot resembles their plot showing 104 (ZIKV infection) and 44 (DENV infection) upregulated RNAs.
+
+The x-axis is `padj` and y-axis is `log2FoldChange` > 0 from `GSE207347_ZIKV_DESeq2_result_name.txt.gz` and `GSE207347_DENV_DESeq2_result_name.txt.gz` files.
 
 # Figure 3 A and B
 
@@ -236,12 +240,13 @@ fig3b +
                                     fill = NA, linewidth = 1))
 ```
 
+Figure 3A and 3B: These figures indicate translational changes induced by ZIKV and DENV infection. Here, to reproduce the data we have used the ribodiff dataset where we have used log2 fold changes in Translational Efficiency in X axis. We also had to cut off all the p values greater than 0.05. For Y axis, q adusted value is used where we had to use reverse log10 scale to model the graph the same as the study's.
+
+The x-axis is `log2FC_TE_DrugTreated_vs_Control` and y-axis is `padj` < 0.5 from `GSE207347_A1B1_vs_A2B2_ZIKV_ribodiff_name.txt.gz` and `GSE207347_A1B1_vs_A2B2_DENV_ribodiff_name.txt.gz` files.
+
 ```{r}
 rm(list = ls())
 ```
-
-
-Figure 3A and 3B: These figures indicate translational changes induced by ZIKV and DENV infection. Here, to reproduce the data we have used the ribodiff dataset where we have used log2 fold changes in Translational Efficiency in X axis. We also had to cut off all the p values greater than 0.05. For Y axis, q adusted value is used where we had to use reverse log10 scale to model the graph the same as the study's.
 
 # Figure 2 E
 
