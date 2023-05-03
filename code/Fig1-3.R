@@ -10,9 +10,12 @@ df.ZIKV_DE <- fread("GSE207347_ZIKV_DESeq2_result_name.txt.gz")
 df.DENV_DE <- fread("GSE207347_DENV_DESeq2_result_name.txt.gz")
 
 # Figure 1 B
+# Omit NA of padj, x is log2FoldChange
+# y is negative log10 transformed padj
 fig1b <- ggplot(subset(df.ZIKV_DE, !is.na(padj)),
                 aes(x = log2FoldChange, y = -log10(padj)))
 
+# Add hline to highlight padj < 0.05
 fig1b +
   geom_point(aes(colour = -log10(padj) > -log10(0.05)), show.legend = FALSE) +
   labs(title = "ZIKV") + ylab("p adj(-log10)") +
@@ -40,6 +43,7 @@ df.ZIKV_DE.sub <- subset(df.ZIKV_DE, !is.na(padj))
 (df.ZIKV_DE.sub$log2FoldChange < 0 & df.ZIKV_DE.sub$padj < 0.05) %>% sum()
 
 # Figure 1 C
+# Same method as 1 A
 fig1c <- ggplot(subset(df.DENV_DE, !is.na(padj)),
                 aes(log2FoldChange, -log10(padj)))
 
@@ -70,13 +74,15 @@ df.DENV_DE.sub <- subset(df.DENV_DE, !is.na(padj))
 (df.DENV_DE.sub$log2FoldChange < 0 & df.DENV_DE.sub$padj < 0.05) %>% sum()
 
 # Figure 2 A
-
+# Subset the up regulated by log2FoldChange > 0
+# Only include padj < 0.05
 ZIKV.up <- df.ZIKV_DE.sub$log2FoldChange > 0 & df.ZIKV_DE.sub$padj < 0.05
 df.ZIKV_DE.up <- df.ZIKV_DE.sub[ZIKV.up,]
 
 fig2a <- ggplot(subset(df.ZIKV_DE.up, !is.na(padj)),
                 aes(x = -log10(padj), y = log2FoldChange))
 
+# Highlight padj < 0.001
 fig2a +
   geom_point(aes(colour = -log10(padj) > -log10(0.001)), show.legend = FALSE) +
   xlim(0, 20) + ylim(0, 5) + labs(title = "ZIKV Upregulated RNA") +
@@ -93,7 +99,7 @@ fig2a +
 sum(df.ZIKV_DE.up$padj < 0.001)
 
 # Figure 2 B
-
+# Same method as 2 A
 DENV.up <- df.DENV_DE.sub$log2FoldChange > 0 & df.DENV_DE.sub$padj < 0.05
 df.DENV_DE.up <- df.DENV_DE.sub[DENV.up,]
 
@@ -116,23 +122,18 @@ fig2b +
 sum(df.DENV_DE.up$padj < 0.001)
 
 # Figure 3 A
-
+# Rename the 7th column of data (rel=place space as _)
 colnames(df.ZIKV)[7] <- "log2FC_TE_DrugTreated_vs_Control"
 
+# Omit NA in padj
+# only plot padj < 0.5
 df.ZIKV.sub <- subset(df.ZIKV, !is.na(padj))
 df.ZIKV.sub <- df.ZIKV.sub[df.ZIKV.sub$padj < 0.5,]
-
-# idx.q <- c(quantile(df.ZIKV.sub$log2FC_TE_DrugTreated_vs_Control, 0.3),
-#           quantile(df.ZIKV.sub$log2FC_TE_DrugTreated_vs_Control, 0.7))
-
-# idx <- df.ZIKV.sub$log2FC_TE_DrugTreated_vs_Control > idx.q[2] |
-#  df.ZIKV.sub$log2FC_TE_DrugTreated_vs_Control < idx.q[1]
-
-# df.ZIKV.sub <- df.ZIKV.sub[idx,]
 
 fig3a <- ggplot(df.ZIKV.sub,
                 aes(x = log2FC_TE_DrugTreated_vs_Control, y = padj))
 
+# Apply reverselog_trans to y axis
 fig3a +
   geom_point() +
   scale_y_continuous(trans = reverselog_trans(base = 10),
@@ -151,7 +152,7 @@ fig3a +
 
 
 # Figure 3 B
-
+# Same method as 3 A
 colnames(df.DENV)[7] <- "log2FC_TE_DrugTreated_vs_Control"
 
 df.DENV.sub <- subset(df.DENV, !is.na(padj))
