@@ -49,9 +49,9 @@ df.ZIKV_DE <- fread("data/GSE207347_ZIKV_DESeq2_result_name.txt.gz")
 df.DENV_DE <- fread("data/GSE207347_DENV_DESeq2_result_name.txt.gz")
 ```
 
-# Figure 1 B
+# Figure 1 B and C
 
-```{r}
+```{r, fig.align = 'center', fig.show = 'hold', out.width = '49%'}
 # Figure 1 B
 fig1b <- ggplot(subset(df.ZIKV_DE, !is.na(padj)),
                 aes(log2FoldChange, -log10(padj)))
@@ -75,19 +75,7 @@ fig1b +
         axis.line = element_line(colour = "black"),
         panel.border = element_rect(colour = "black",
                                     fill = NA, linewidth = 1.5))
-```
 
-```{r}
-df.ZIKV_DE.sub <- subset(df.ZIKV_DE, !is.na(padj))
-# Count of Up regulated with q < 0.05
-# (df.ZIKV_DE.sub$log2FoldChange > 0 & df.ZIKV_DE.sub$padj < 0.05) %>% sum()
-# Count of Down regulated with q < 0.05
-# (df.ZIKV_DE.sub$log2FoldChange < 0 & df.ZIKV_DE.sub$padj < 0.05) %>% sum()
-```
-
-# Figure 1 C
-
-```{r}
 # Figure 1 C
 fig1c <- ggplot(subset(df.DENV_DE, !is.na(padj)),
                 aes(log2FoldChange, -log10(padj)))
@@ -114,6 +102,15 @@ fig1c +
 ```
 
 ```{r}
+df.ZIKV_DE.sub <- subset(df.ZIKV_DE, !is.na(padj))
+# Count of Up regulated with q < 0.05
+# (df.ZIKV_DE.sub$log2FoldChange > 0 & df.ZIKV_DE.sub$padj < 0.05) %>% sum()
+# Count of Down regulated with q < 0.05
+# (df.ZIKV_DE.sub$log2FoldChange < 0 & df.ZIKV_DE.sub$padj < 0.05) %>% sum()
+```
+
+
+```{r}
 df.DENV_DE.sub <- subset(df.DENV_DE, !is.na(padj))
 # Count of Up regulated with q < 0.05
 # (df.DENV_DE.sub$log2FoldChange > 0 & df.DENV_DE.sub$padj < 0.05) %>% sum()
@@ -121,9 +118,9 @@ df.DENV_DE.sub <- subset(df.DENV_DE, !is.na(padj))
 # (df.DENV_DE.sub$log2FoldChange < 0 & df.DENV_DE.sub$padj < 0.05) %>% sum()
 ```
 
-# Figure 2 A
+# Figure 2 A and B
 
-```{r}
+```{r, fig.align = 'center', fig.show = 'hold', out.width = '49%'}
 # Figure 2 A
 
 ZIKV.up <- df.ZIKV_DE.sub$log2FoldChange > 0 & df.ZIKV_DE.sub$padj < 0.05
@@ -146,11 +143,7 @@ fig2a +
 
 # Count of q < 0.001
 # sum(df.ZIKV_DE.up$padj < 0.001)
-```
 
-# Figure 2 B
-
-```{r}
 # Figure 2 B
 
 DENV.up <- df.DENV_DE.sub$log2FoldChange > 0 & df.DENV_DE.sub$padj < 0.05
@@ -175,9 +168,9 @@ fig2b +
 # sum(df.DENV_DE.up$padj < 0.001)
 ```
 
-# Figure 3 A
+# Figure 3 A and B
 
-```{r}
+```{r, fig.align = 'center', fig.show = 'hold', out.width = '49%'}
 # Figure 3 A
 
 colnames(df.ZIKV)[7] <- "log2FC_TE_DrugTreated_vs_Control"
@@ -207,11 +200,6 @@ fig3a +
         panel.border = element_rect(colour = "black",
                                     fill = NA, linewidth = 1))
 
-```
-
-# Figure 3 B
-
-```{r}
 # Figure 3 B
 
 colnames(df.DENV)[7] <- "log2FC_TE_DrugTreated_vs_Control"
@@ -247,6 +235,8 @@ fig3b +
 rm(list = ls())
 ```
 
+# Figure 2 E
+
 ```{r}
 #Load data and packages
 library(tidyverse)
@@ -257,9 +247,7 @@ DESeq2.ZIKV <- fread("data/GSE207347_ZIKV_DESeq2_result_name.txt.gz")
 DESeq2.DENV <- fread("data/GSE207347_DENV_DESeq2_result_name.txt.gz")
 ```
 
-# Figure 2 E
-
-```{r}
+```{r, fig.align = 'center', fig.show = 'hold', out.width = '60%'}
 #Grabbing tRNA Synthetases
 ZIKV.trna <- subset(DESeq2.ZIKV, na %in% c("CARS", "YARS", "WARS", "AARS", "MARS", "SARS", "GARS", "VARS", "TARS", "IARS"))
 DENV.trna <- subset(DESeq2.DENV, na %in% c("CARS", "YARS", "WARS", "AARS", "MARS", "SARS", "GARS", "VARS", "TARS", "IARS"))
@@ -314,7 +302,7 @@ gene_list <- sort(gene_list, decreasing = TRUE)
 
 organism <- "org.Hs.eg.db"
 library(organism, character.only = TRUE)
-keytypes(org.Hs.eg.db)
+# keytypes(org.Hs.eg.db)
 
 gse <- gseGO(geneList=gene_list, 
              ont ="ALL", 

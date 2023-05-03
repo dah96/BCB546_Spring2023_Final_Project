@@ -14,7 +14,7 @@ Singh, K., Martinez, M. G., Lin, J., Gregory, J., Nguyen, T. U., Abdelaal, R., K
 
 ## `main` directory
 
-The introduction of original paper, the technical details of the replication of analyses and the summary of the original results are written in **R Markdown** `Singh et al - 2022.Rmd` and compiled to `pdf`.
+The introduction of original paper, the technical details of the replication of analyses and the summary of the original results are written in **R Markdown** `Singh_et_al_2022.Rmd` and compiled to `pdf`.
 
 ## `data` directory
 
