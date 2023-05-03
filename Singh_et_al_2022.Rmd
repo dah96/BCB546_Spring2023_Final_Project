@@ -118,6 +118,9 @@ df.DENV_DE.sub <- subset(df.DENV_DE, !is.na(padj))
 # (df.DENV_DE.sub$log2FoldChange < 0 & df.DENV_DE.sub$padj < 0.05) %>% sum()
 ```
 
+
+Figure 1B & C: To reproduce Figure 1B and C we used log2fold change in RNA expression (uninfected vs infected) in the X axis and p(adjusted value) in Y axis. We found upregulation of 445 mRNAs and downregulation of 335 mRNAs in case of ZIKV infection. Also, we found upregulation of 156 mRNAs and downregulation of 37mRNAs in DENV infection, that resembles the actual study. 
+
 # Figure 2 A and B
 
 ```{r, fig.align = 'center', fig.show = 'hold', out.width = '49%'}
@@ -167,6 +170,8 @@ fig2b +
 # Count of q < 0.001
 # sum(df.DENV_DE.up$padj < 0.001)
 ```
+
+Figure 2A & 2B: Here, we tried to analyze the upregulated RNA in ZIKV(fig. 2A) and DENV (fig. 2B) infected samples compared to the uninfected samples, using dseq2 processed data. Although, in their plots they highlighted the genes that are upregulated both in ZIKV and DENV infection, our plot resembles their plot showing 104 (ZIKV infection) and 44 (DENV infection) upregulated RNA .
 
 # Figure 3 A and B
 
@@ -235,6 +240,9 @@ fig3b +
 rm(list = ls())
 ```
 
+
+Figure 3A and 3B: These figures indicate translational changes induced by ZIKV and DENV infection. Here, to reproduce the data we have used the ribodiff dataset where we have used log2 fold changes in Translational Efficiency in X axis, but here we had to cut off all the p values greater than 0.05. For Y axis,q adusted value is used where we had to use reverse log10 scale.
+
 # Figure 2 E
 
 ```{r}
@@ -276,6 +284,8 @@ ggplot(complete.trna, aes(x=na, y=log2FoldChange, label=log2FoldChange)) +
 rm(list = ls())
 ```
 
+Figure 2E: Here, we analyzed RNA fold change of ZIKV and DENV induced aminoacyl tRNA synthetases (ARS) genes. Interestingly, here, our plot showed difference compared to the actual study.For example, TARS and IARS genes showed not significant change in RNA fold change where our plot showed significant upregulation of those genes.Although our plot showed upregulation of aminoacyl tRNA synthetases (ARS) genes that resembles the study result.
+
 # Test (Figure 1 F)
 
 ```{r}
@@ -315,3 +325,6 @@ gse <- gseGO(geneList=gene_list,
 
 emapplot(gse)
 ```
+
+
+Figure 1F: This figure is the most interesting part of our analysis. Here we tried to reproduce their SRING analysis of gene clusters to understand interaction between downregulated genes. Although we eneded up producing very difefrent figure, the cluster we got showed similiar result of the study. Their study showed cluster of genes associated with cell cycle and histone regulation genes where the clusters we found also showed clusters associated with cell cycle and chromatin organization.
