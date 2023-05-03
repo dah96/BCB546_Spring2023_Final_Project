@@ -1,6 +1,6 @@
 # BCB546 Spring2023 Final Project
 
-## Team members:
+## Team members
 
 Md Shazid Hasan, Dylan Harris, Jahanara Sonia, Weixia Deng
 
@@ -11,6 +11,10 @@ Singh, K., Martinez, M. G., Lin, J., Gregory, J., Nguyen, T. U., Abdelaal, R., K
 [**Paper Link**](https://doi.org/10.3390/v14071418)
 
 [**Source of the raw data**](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE207347)
+
+## `main` directory
+
+The introduction of original paper, the technical details of the replication of analyses and the summary of the original results are written in **R Markdown** `Singh et al - 2022.Rmd` and compiled to `pdf`.
 
 ## `data` directory
 
